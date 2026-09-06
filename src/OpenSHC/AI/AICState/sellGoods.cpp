@@ -15,9 +15,9 @@ namespace AI {
     {
         int const reward = MACRO_CALL_MEMBER(Game::GameStateStructures_Func::getSellPrice, DAT_GameState::ptr)(
             playerID, resourceType, amount);
-        DAT_GameSynchronyState::ptr->finalResults.finalGold[playerID] += reward;
-        DAT_GameState::ptr->playerDataArray[playerID].currentResources[Game::Resources::RT_GOLD] += reward;
-        DAT_GameState::ptr->playerDataArray[playerID].marketGold += reward;
+        DAT_GameSynchronyState::instance.finalResults.finalGold[playerID] += reward;
+        DAT_GameState::instance.playerDataArray[playerID].currentResources[Game::Resources::RT_GOLD] += reward;
+        DAT_GameState::instance.playerDataArray[playerID].marketGold += reward;
         MACRO_CALL_MEMBER(Map::Buildings::BuildingsState_Func::processResourceLoss, DAT_BuildingsState::ptr)(
             playerID, resourceType, amount, 0);
         MACRO_CALL_MEMBER(Game::GameStateStructures_Func::displayPlayerTradeVisualEffect, DAT_GameState::ptr)(

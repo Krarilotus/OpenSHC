@@ -16,8 +16,8 @@ namespace AI {
             playerID, resourceType, amount);
         if (MACRO_CALL_MEMBER(Map::Buildings::BuildingsState_Func::processResourceGain, DAT_BuildingsState::ptr)(
                 playerID, resourceType, amount)) {
-            DAT_GameState::ptr->playerDataArray[playerID].currentResources[Game::Resources::RT_GOLD] -= cost;
-            DAT_GameState::ptr->playerDataArray[playerID].marketGold -= cost;
+            DAT_GameState::instance.playerDataArray[playerID].currentResources[Game::Resources::RT_GOLD] -= cost;
+            DAT_GameState::instance.playerDataArray[playerID].marketGold -= cost;
             MACRO_CALL_MEMBER(Game::GameStateStructures_Func::displayPlayerTradeVisualEffect, DAT_GameState::ptr)(
                 playerID, 0, amount, resourceType);
             return TRUE;
