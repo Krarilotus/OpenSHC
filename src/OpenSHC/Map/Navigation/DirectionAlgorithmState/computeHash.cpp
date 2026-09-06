@@ -7,11 +7,15 @@ namespace Map {
         // FUNCTION: STRONGHOLDCRUSADER 0x0046CD30
         uint DirectionAlgorithmState::computeHash(int byteCount, int* address)
         {
-            // Equivalent operation for each complete word (unsigned wraparound):
-            // hash += static_cast<uint>(*address++);
-            // hash = (hash << 1) | (hash >> 31);
-            // The original has an assembly-shaped, sixteen-word unrolled loop.
-            // Keep it explicit like IO/DecoderState's native codec routines.
+            /*
+            uint hash = 0;
+            while (byteCount >= 4) {
+                hash += static_cast<uint>(*address++);
+                hash = (hash << 1) | (hash >> 31);
+                byteCount -= 4;
+            }
+            return hash;
+            */
             uint hash = 0;
             __asm {
                 mov esi, address
